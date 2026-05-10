@@ -1,16 +1,21 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { getMyEvents } from '#/server/event-actions'
 import { EventCard } from '#/components/ui/event-card'
-import { PlusCircle, ArrowUpRight, Calendar, Users, Eye } from 'lucide-react'
+import { PlusCircle, ArrowUpRight, Calendar, Users, Eye, Loader2 } from 'lucide-react'
 
 export const Route = createFileRoute('/_protected/dashboard/')({
   loader: async () => await getMyEvents(),
   component: MyEventsPage,
+  pendingComponent: () => (
+    <div className="flex items-center justify-center min-h-[400px]">
+      <Loader2 className="w-8 h-8 text-indigo-500 animate-spin" />
+    </div>
+  ),
 })
 
 function MyEventsPage() {
   const events = Route.useLoaderData()
-  const { session } = Route.useRouteContext()
+  const { auth } = Route.useRouteContext()
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -20,7 +25,7 @@ function MyEventsPage() {
             Moje eventy
           </h1>
           <p className="text-slate-500 mt-2">
-            Vítejte zpět, {session.user.name.split(' ')[0]}! Zde je přehled vašich událostí.
+            Vítejte zpět, {auth.user?.name.split(' ')[0]}! Zde je přehled vašich událostí.
           </p>
         </div>
         <Link to="/dashboard/create">

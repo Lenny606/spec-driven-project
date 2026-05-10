@@ -2,9 +2,15 @@ import {
   HeadContent,
   Scripts,
   createRootRouteWithContext,
+  Outlet,
+  ScrollRestoration,
+  ErrorComponent,
 } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
+import { createServerFn } from '@tanstack/react-start'
+import { getRequest } from '@tanstack/react-start/server'
+import { auth } from '../lib/auth'
 
 import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 
@@ -12,11 +18,37 @@ import appCss from '../styles.css?url'
 
 import type { QueryClient } from '@tanstack/react-query'
 
+const getSession = createServerFn({ method: 'GET' }).handler(async () => {
+  const request = getRequest()
+  if (!request) return null
+  return await auth.api.getSession({
+    headers: request.headers,
+  })
+})
+
 interface MyRouterContext {
   queryClient: QueryClient
+  auth: {
+    user: {
+      id: string
+      email: string
+      name: string
+      image?: string | null
+    } | null
+    session: any | null
+  }
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
+  beforeLoad: async () => {
+    const session = await getSession()
+    return {
+      auth: {
+        user: session?.user ?? null,
+        session: session?.session ?? null,
+      },
+    }
+  },
   head: () => ({
     meta: [
       {
@@ -27,7 +59,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'TanStack Start Starter',
+        title: 'Random Event Generator | Premium Event Platform',
+      },
+      {
+        name: 'description',
+        content: 'Discover and create amazing random events in your city.',
       },
     ],
     links: [
@@ -37,10 +73,19 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       },
     ],
   }),
-  shellComponent: RootDocument,
+  component: RootDocument,
+  errorComponent: (props) => {
+    return (
+      <RootDocument>
+        <div className="p-8">
+          <ErrorComponent {...props} />
+        </div>
+      </RootDocument>
+    )
+  },
 })
 
-function RootDocument({ children }: { children: React.ReactNode }) {
+function RootDocument({ children }: { children?: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -48,8 +93,9 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <div className="flex min-h-screen flex-col bg-slate-50">
-          <main className="flex-1">{children}</main>
+          {children || <Outlet />}
         </div>
+        <ScrollRestoration />
         <TanStackDevtools
           config={{
             position: 'bottom-right',

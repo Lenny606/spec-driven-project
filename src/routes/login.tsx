@@ -1,22 +1,10 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { LoginForm } from '../components/auth/login-form'
 import { Navbar } from '#/components/layout/Navbar'
-import { createServerFn } from '@tanstack/react-start'
-import { getRequest } from '@tanstack/react-start/server'
-import { auth } from '../lib/auth'
-
-const getSession = createServerFn({ method: 'GET' }).handler(async () => {
-  const request = getRequest()
-  if (!request) return null
-  return await auth.api.getSession({
-    headers: request.headers,
-  })
-})
 
 export const Route = createFileRoute('/login')({
-  beforeLoad: async () => {
-    const session = await getSession()
-    if (session) {
+  beforeLoad: ({ context }) => {
+    if (context.auth.session) {
       throw redirect({
         to: '/dashboard',
       })
