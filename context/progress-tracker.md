@@ -25,6 +25,7 @@ Initialize the technical foundation of the project by setting up the database la
 - [x] **UI Context**: Set the visual identity and color palette.
 - [x] **Architecture Context**: Defined the full-stack technology layers.
 - [x] **Database Model**: Designed the schema for users and events.
+- [x] **Master Context**: Created `GEMINI.md` as the project entry point.
 
 ## IN PROGRESS
 - [ ] **Technical Setup**: Installing essential dependencies (`drizzle-orm`, `better-sqlite3`, etc.).
