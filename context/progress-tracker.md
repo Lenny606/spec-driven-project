@@ -13,10 +13,10 @@ Initialize the technical foundation of the project by setting up the database la
 (Currently implementing core UI components and database layer)
 
 ## STATUS SUMMARY
-- **Planning**: 100% (Design system implemented)
+- **Planning**: 100% (Design, Database, and Home Page specs finalized)
 - **Design System**: 100% (Completed)
 - **Database Setup**: 100% (Implemented & Seeded)
-- **Frontend Core**: 0%
+- **Frontend Core**: 20% (Shell implemented, Home Page in progress)
 - **Authentication**: 0%
 
 ## COMPLETED
@@ -29,9 +29,11 @@ Initialize the technical foundation of the project by setting up the database la
 - [x] **Master Context**: Created `GEMINI.md` as the project entry point.
 - [x] **Design System**: Implemented core UI components (Buttons, Inputs, Cards, etc.).
 - [x] **Database Initialization**: Setup SQLite with Drizzle ORM and seeded initial data.
+- [x] **Home Page Spec**: Defined the layout and logic for the unauthenticated home page.
 
 ## IN PROGRESS
-- [ ] **Core Layout**: Implementing the shell with Navbar, Footer and Sidebar.
+- [x] **Core Layout**: Implemented the shell with Navbar and Footer.
+- [x] **Home Page Implementation**: Built Hero, 'How it Works' sections, and Randomizer modal.
 - [ ] **Authentication Layer**: Setting up login/signup logic with Better Auth.
 
 ## NEXT
