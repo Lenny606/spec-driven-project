@@ -63,3 +63,4 @@ The project development is guided by a set of specification files located in the
 - **[ui-context.md](file:///home/tomas/learing-projects/spec-driven-project/context/ui-context.md)**: Visual identity, colors, and styling rules.
 - **[architecture-context.md](file:///home/tomas/learing-projects/spec-driven-project/context/architecture-context.md)**: Technology stack and system architecture.
 - **[database-model.md](file:///home/tomas/learing-projects/spec-driven-project/context/database-model.md)**: Database schema and entity relationships.
+- **[progress-tracker.md](file:///home/tomas/learing-projects/spec-driven-project/context/progress-tracker.md)**: Real-time project status and milestone tracking.
