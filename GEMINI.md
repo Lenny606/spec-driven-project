@@ -22,4 +22,4 @@ This project follows a **Spec-Driven Workflow**. All technical and design decisi
 ## 🚀 CURRENT STATUS
 - **Phase**: Phase 1: Project Initialization & Setup.
 - **Goal**: Setup database layer (SQLite + Drizzle).
-- **Progress**: Planning phase at 50% (Specifications finalized, awaiting technical execution plan).
+- **Progress**: Planning phase at 80% (Design & Database specs finalized, awaiting technical execution).

@@ -14,4 +14,8 @@ todos.json
 .agent
 .idea
 tests/*
-
+# Database
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
