@@ -13,11 +13,11 @@ Initialize the technical foundation of the project by setting up the database la
 (Currently implementing core UI components and database layer)
 
 ## STATUS SUMMARY
-- **Planning**: 100% (Design, Database, and Home Page specs finalized)
+- **Planning**: 100% (All core specs finalized)
 - **Design System**: 100% (Completed)
 - **Database Setup**: 100% (Implemented & Seeded)
 - **Frontend Core**: 20% (Shell implemented, Home Page in progress)
-- **Authentication**: 0%
+- **Authentication**: 10% (Spec finalized, in progress)
 
 ## COMPLETED
 - [x] **Project Overview**: Defined goals, scope, and success criteria.
@@ -30,6 +30,7 @@ Initialize the technical foundation of the project by setting up the database la
 - [x] **Design System**: Implemented core UI components (Buttons, Inputs, Cards, etc.).
 - [x] **Database Initialization**: Setup SQLite with Drizzle ORM and seeded initial data.
 - [x] **Home Page Spec**: Defined the layout and logic for the unauthenticated home page.
+- [x] **Authentication Spec**: Finalized strategy using Better Auth.
 
 ## IN PROGRESS
 - [x] **Core Layout**: Implemented the shell with Navbar and Footer.
