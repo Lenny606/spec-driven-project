@@ -15,9 +15,9 @@ Initialize the technical foundation of the project by setting up the database la
 ## STATUS SUMMARY
 - **Planning**: 100% (All core specs finalized)
 - **Design System**: 100% (Completed)
-- **Database Setup**: 100% (Implemented & Seeded)
-- **Frontend Core**: 20% (Shell implemented, Home Page in progress)
-- **Authentication**: 10% (Spec finalized, in progress)
+- **Database Setup**: 100% (Implemented & Seeded with Auth schema)
+- **Frontend Core**: 30% (Shell implemented, Home Page and Auth UI in progress)
+- **Authentication**: 100% (Implemented with Better Auth)
 
 ## COMPLETED
 - [x] **Project Overview**: Defined goals, scope, and success criteria.
@@ -31,6 +31,8 @@ Initialize the technical foundation of the project by setting up the database la
 - [x] **Database Initialization**: Setup SQLite with Drizzle ORM and seeded initial data.
 - [x] **Home Page Spec**: Defined the layout and logic for the unauthenticated home page.
 - [x] **Authentication Spec**: Finalized strategy using Better Auth.
+- [x] **Authentication Implementation**: Setup Better Auth, Drizzle schemas, API routes, and Auth UI.
+- [x] **User Dashboard Spec**: Defined the structural shell and protection for the authenticated area.
 
 ## IN PROGRESS
 - [x] **Core Layout**: Implemented the shell with Navbar and Footer.

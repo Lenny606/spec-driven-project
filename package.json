@@ -16,6 +16,7 @@
     "db:seed": "tsx src/db/seed.ts"
   },
   "dependencies": {
+    "@better-auth/drizzle-adapter": "^1.6.10",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/ai": "latest",
     "@tanstack/ai-anthropic": "latest",
@@ -34,6 +35,7 @@
     "@tanstack/react-store": "latest",
     "@tanstack/router-plugin": "^1.132.0",
     "@tanstack/store": "latest",
+    "better-auth": "^1.6.10",
     "better-sqlite3": "^12.9.0",
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.45.2",

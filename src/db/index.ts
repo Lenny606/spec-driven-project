@@ -4,6 +4,9 @@ import * as usersSchema from './schema/users';
 import * as eventsSchema from './schema/events';
 import * as addressesSchema from './schema/addresses';
 import * as rolesSchema from './schema/roles';
+import * as sessionsSchema from './schema/sessions';
+import * as accountsSchema from './schema/accounts';
+import * as verificationsSchema from './schema/verifications';
 
 const sqlite = new Database('local.db');
 
@@ -12,6 +15,9 @@ export const db = drizzle(sqlite, {
     ...usersSchema, 
     ...eventsSchema, 
     ...addressesSchema, 
-    ...rolesSchema 
+    ...rolesSchema,
+    ...sessionsSchema,
+    ...accountsSchema,
+    ...verificationsSchema
   } 
 });

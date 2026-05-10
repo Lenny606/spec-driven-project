@@ -23,7 +23,6 @@ async function seed() {
   const [organizer] = await db.insert(users).values({
     name: 'System Organizer',
     email: 'admin@randomevent.com',
-    passwordHash: 'hashed_password', // Placeholder
     roleId: adminRole.id,
   }).returning();
 
