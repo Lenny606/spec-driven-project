@@ -1,10 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { LoginForm } from '../components/auth/login-form'
+import { Navbar } from '#/components/layout/Navbar'
 
 export const Route = createFileRoute('/login')({
   component: () => (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
-      <LoginForm />
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <div className="flex-1 flex items-center justify-center bg-slate-50 p-4">
+        <LoginForm />
+      </div>
     </div>
   ),
 })

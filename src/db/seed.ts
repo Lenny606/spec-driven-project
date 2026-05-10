@@ -1,14 +1,17 @@
 import { db } from './index';
 import { roles } from './schema/roles';
 import { users } from './schema/users';
+import { accounts } from './schema/accounts';
 import { addresses } from './schema/addresses';
 import { events } from './schema/events';
+import { hashPassword } from "better-auth/crypto";
 
 async function seed() {
   console.log('🌱 Seeding database...');
 
   // 1. Clean up
   await db.delete(events);
+  await db.delete(accounts);
   await db.delete(users);
   await db.delete(addresses);
   await db.delete(roles);
@@ -20,11 +23,24 @@ async function seed() {
   ]).returning();
 
   // 3. System Organizer
+  const hashedPassword = await hashPassword("password123");
+
   const [organizer] = await db.insert(users).values({
     name: 'System Organizer',
     email: 'admin@randomevent.com',
     roleId: adminRole.id,
   }).returning();
+
+  // Better Auth stores password in the account table for credential provider
+  await db.insert(accounts).values({
+    id: crypto.randomUUID(),
+    userId: organizer.id,
+    accountId: organizer.id,
+    providerId: "credential",
+    password: hashedPassword,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
 
   // 4. Addresses
   const [addr1, addr2] = await db.insert(addresses).values([

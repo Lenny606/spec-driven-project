@@ -1,10 +1,11 @@
 import { createFileRoute, redirect, Outlet } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/start'
-import { getWebRequest } from '@tanstack/start/server'
+import { createServerFn } from '@tanstack/react-start'
+import { getRequest } from '@tanstack/react-start/server'
 import { auth } from '../lib/auth'
+import { DashboardLayout } from '#/components/layout/DashboardLayout'
 
 const getSession = createServerFn({ method: 'GET' }).handler(async () => {
-  const request = getWebRequest()
+  const request = getRequest()
   if (!request) return null
   return await auth.api.getSession({
     headers: request.headers,
@@ -23,5 +24,15 @@ export const Route = createFileRoute('/_protected')({
       session,
     }
   },
-  component: () => <Outlet />,
+  component: ProtectedLayout,
 })
+
+function ProtectedLayout() {
+  const { session } = Route.useRouteContext()
+  
+  return (
+    <DashboardLayout user={session.user}>
+      <Outlet />
+    </DashboardLayout>
+  )
+}

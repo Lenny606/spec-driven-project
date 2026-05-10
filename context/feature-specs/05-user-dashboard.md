@@ -1,4 +1,5 @@
 # FEATURE: USER DASHBOARD (AUTHENTICATED)
+READ GEMINI.md and related context files before implementing the design system.
 
 ## OVERVIEW
 The User Dashboard is a restricted area accessible only to logged-in users. It serves as the primary management hub for event organizers. The design remains premium and minimalist, maintaining consistency with the global design system (glassmorphism, high-end typography).

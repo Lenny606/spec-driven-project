@@ -1,9 +1,9 @@
-import { createMiddleware } from "@tanstack/start";
-import { getWebRequest } from "@tanstack/start/server";
+import { createMiddleware } from "@tanstack/react-start";
+import { getRequest } from "@tanstack/react-start/server";
 import { auth } from "./auth";
 
 export const authMiddleware = createMiddleware().server(async ({ next }) => {
-  const request = getWebRequest();
+  const request = getRequest();
   if (!request) {
     throw new Error("Request not found");
   }
