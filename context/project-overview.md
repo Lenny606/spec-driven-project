@@ -54,3 +54,12 @@ A simple and engaging web application designed to help users discover exciting e
 - **Micro-animations**: Smooth transitions and hover effects to make the app feel "alive".
 - **Visual Excellence**: Modern typography (Inter/Outfit) and vibrant, harmonious colors.
 - **Mobile First**: Fully responsive design for all devices.
+
+## CONTEXT STRUCTURE
+The project development is guided by a set of specification files located in the `context/` directory:
+- **[project-overview.md](file:///home/tomas/learing-projects/spec-driven-project/context/project-overview.md)**: Goals, scope, success criteria, and structure overview.
+- **[ai-workflow-rules.md](file:///home/tomas/learing-projects/spec-driven-project/context/ai-workflow-rules.md)**: Operational guidelines for spec-driven development.
+- **[code-standards.md](file:///home/tomas/learing-projects/spec-driven-project/context/code-standards.md)**: Coding conventions and file organization.
+- **[ui-context.md](file:///home/tomas/learing-projects/spec-driven-project/context/ui-context.md)**: Visual identity, colors, and styling rules.
+- **[architecture-context.md](file:///home/tomas/learing-projects/spec-driven-project/context/architecture-context.md)**: Technology stack and system architecture.
+- **[database-model.md](file:///home/tomas/learing-projects/spec-driven-project/context/database-model.md)**: Database schema and entity relationships.
