@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Button } from '#/components/ui/button'
 import { Input, Textarea } from '#/components/ui/input'
+import { DateTimePicker } from '#/components/ui/date-time-picker'
 import { H1, H2, P, Muted } from '#/components/ui/typography'
 import { Feedback } from '#/components/ui/feedback'
 import { EventCard } from '#/components/ui/event-card'
@@ -39,10 +40,11 @@ function DesignSystemPage() {
 
         {/* Inputs */}
         <section className="space-y-6 p-8 bg-white rounded-2xl border border-slate-200 shadow-sm">
-          <H2>Inputs & Textareas</H2>
-          <div className="space-y-4">
+          <H2>Inputs & Pickers</H2>
+          <div className="space-y-6">
             <Input placeholder="Standard Input" />
-            <Input variant="glass" placeholder="Glass Input" className="bg-indigo-50/50" />
+            <DateTimePicker label="Event Date & Time" />
+            <DateTimePicker variant="glass" label="Glass Date Picker" className="bg-indigo-50/50" />
             <Textarea placeholder="Standard Textarea" />
           </div>
         </section>
