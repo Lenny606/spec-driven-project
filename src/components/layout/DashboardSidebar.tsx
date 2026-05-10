@@ -13,28 +13,24 @@ export function DashboardSidebar() {
   return (
     <aside className="w-64 border-r border-slate-200/50 bg-white flex flex-col hidden lg:flex">
       <div className="p-6">
-        <Button className="w-full h-12 shadow-lg shadow-indigo-500/20 gap-2">
-          <PlusCircle className="h-5 w-5" />
-          Create Event
-        </Button>
+        <Link to="/dashboard/create">
+          <Button className="w-full h-12 shadow-lg shadow-indigo-500/20 gap-2">
+            <PlusCircle className="h-5 w-5" />
+            Vytvořit event
+          </Button>
+        </Link>
       </div>
 
       <nav className="flex-1 px-4 space-y-1">
         <SidebarLink 
           to="/dashboard" 
-          icon={<LayoutDashboard className="h-5 w-5" />} 
-          label="Overview" 
-          active 
-        />
-        <SidebarLink 
-          to="/dashboard" 
           icon={<Calendar className="h-5 w-5" />} 
-          label="My Events" 
+          label="Moje eventy" 
         />
         <SidebarLink 
-          to="/dashboard" 
+          to="/dashboard/settings" 
           icon={<Settings className="h-5 w-5" />} 
-          label="Settings" 
+          label="Nastavení" 
         />
       </nav>
 
@@ -58,25 +54,32 @@ interface SidebarLinkProps {
   active?: boolean;
 }
 
-function SidebarLink({ to, icon, label, active }: SidebarLinkProps) {
+function SidebarLink({ to, icon, label }: SidebarLinkProps) {
   return (
     <Link
       to={to}
+      activeProps={{
+        className: "bg-indigo-50 text-indigo-600 font-semibold",
+      }}
+      inactiveProps={{
+        className: "text-slate-500 hover:bg-slate-50 hover:text-indigo-500",
+      }}
       className={cn(
-        "flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 group",
-        active 
-          ? "bg-indigo-50 text-indigo-600 font-semibold" 
-          : "text-slate-500 hover:bg-slate-50 hover:text-indigo-500"
+        "flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 group"
       )}
     >
-      <div className="flex items-center gap-3">
-        {icon}
-        <span className="text-sm">{label}</span>
-      </div>
-      <ChevronRight className={cn(
-        "h-4 w-4 transition-transform",
-        active ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
-      )} />
+      {({ isActive }) => (
+        <>
+          <div className="flex items-center gap-3">
+            {icon}
+            <span className="text-sm">{label}</span>
+          </div>
+          <ChevronRight className={cn(
+            "h-4 w-4 transition-transform",
+            isActive ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0"
+          )} />
+        </>
+      )}
     </Link>
   );
 }

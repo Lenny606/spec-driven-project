@@ -16,8 +16,9 @@ Initialize the technical foundation of the project by setting up the database la
 - **Planning**: 100% (All core specs finalized)
 - **Design System**: 100% (Completed)
 - **Database Setup**: 100% (Implemented & Seeded with Auth schema)
-- **Frontend Core**: 30% (Shell implemented, Home Page and Auth UI in progress)
+- **Frontend Core**: 50% (Shell, Home Page, Auth UI, and Event Management implemented)
 - **Authentication**: 100% (Implemented with Better Auth)
+- **Event Management**: 100% (Implemented creation and listing)
 
 ## COMPLETED
 - [x] **Project Overview**: Defined goals, scope, and success criteria.
@@ -34,11 +35,9 @@ Initialize the technical foundation of the project by setting up the database la
 - [x] **Authentication Implementation**: Setup Better Auth, Drizzle schemas, API routes, and Auth UI.
 - [x] **Auth Flow Logic**: Implemented login/logout redirection and error handling.
 - [x] **User Dashboard Spec**: Defined the structural shell and protection for the authenticated area.
-
-## IN PROGRESS
-- [x] **Core Layout**: Implemented the shell with Navbar and Footer.
-- [x] **Home Page Implementation**: Built Hero, 'How it Works' sections, and Randomizer modal.
-- [ ] **Authentication Layer**: Setting up login/signup logic with Better Auth.
+- [x] **Authentication Layer**: Setup login/signup logic with Better Auth.
+- [x] **Event Management Spec**: Defined creating and listing events for organizers.
+- [x] **Event Management Implementation**: Completed create/list functionality with API compatibility fixes.
 
 ## NEXT
 - [ ] **Event Discovery Page**: Build the main feed using the premium Event Cards.

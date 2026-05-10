@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Calendar, MapPin, Info } from "lucide-react";
+import { Calendar, MapPin, Info, Sparkles } from "lucide-react";
 import { cn } from "#/lib/utils";
 import { Button } from "./button";
 
@@ -9,6 +9,7 @@ export interface EventCardProps extends React.HTMLAttributes<HTMLDivElement> {
   location: string;
   description: string;
   image?: string;
+  isPromoted?: boolean;
   onAction?: () => void;
   actionLabel?: string;
   secondaryActionLabel?: string;
@@ -24,6 +25,7 @@ const EventCard = React.forwardRef<HTMLDivElement, EventCardProps>(
       location,
       description,
       image,
+      isPromoted,
       onAction,
       actionLabel = "View Details",
       secondaryActionLabel,
@@ -37,20 +39,29 @@ const EventCard = React.forwardRef<HTMLDivElement, EventCardProps>(
         ref={ref}
         className={cn(
           "bg-white/80 backdrop-blur-xl border border-white/50 rounded-2xl shadow-xl overflow-hidden flex flex-col transition-all hover:shadow-2xl hover:shadow-indigo-500/10",
+          isPromoted && "ring-2 ring-indigo-500 shadow-indigo-500/10",
           className
         )}
         {...props}
       >
-        {image && (
-          <div className="h-48 overflow-hidden relative">
-            <img
-              src={image}
-              alt={title}
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-          </div>
-        )}
+        <div className="relative">
+          {image && (
+            <div className="h-48 overflow-hidden relative">
+              <img
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+          )}
+          {isPromoted && (
+            <div className="absolute top-4 right-4 bg-indigo-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full flex items-center gap-1.5 shadow-lg animate-pulse">
+              <Sparkles className="w-3 h-3" />
+              Promováno
+            </div>
+          )}
+        </div>
         
         <div className="p-6 flex flex-col flex-grow">
           <h3 className="text-2xl font-bold text-slate-900 mb-4 line-clamp-2">
@@ -79,7 +90,7 @@ const EventCard = React.forwardRef<HTMLDivElement, EventCardProps>(
           <div className="mt-auto pt-6 flex gap-3 border-t border-slate-100">
             <Button 
               variant="primary" 
-              className="flex-1" 
+              className={cn("flex-1", isPromoted && "bg-indigo-600 hover:bg-indigo-700 shadow-indigo-200")} 
               onClick={onAction}
             >
               {actionLabel}
