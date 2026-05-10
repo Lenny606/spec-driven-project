@@ -16,6 +16,13 @@ export const auth = betterAuth({
       verification: verificationsSchema.verifications,
     },
   }),
+  // Explicitly allow both localhost and 127.0.0.1 for development on both 3000 and 3001 ports
+  trustedOrigins: [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
+  ],
   emailAndPassword: {
     enabled: true,
   },

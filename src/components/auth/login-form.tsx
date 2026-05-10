@@ -2,7 +2,7 @@ import * as React from 'react'
 import { authClient } from '../../lib/auth-client'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
-import { Typography } from '../ui/typography'
+import { H2, Muted } from '../ui/typography'
 import { useNavigate, Link } from '@tanstack/react-router'
 
 export function LoginForm() {
@@ -23,51 +23,61 @@ export function LoginForm() {
     })
 
     if (error) {
-      setError(error.message || 'Login failed')
+      // Detailed error mapping based on Better Auth error codes
+      const message = error.code === 'INVALID_EMAIL_OR_PASSWORD' 
+        ? 'Invalid email or password. Please try again.'
+        : error.message || 'Login failed. Please try again later.'
+      
+      setError(message)
       setLoading(false)
     } else {
-      navigate({ to: '/' })
+      // Redirect to dashboard on success
+      navigate({ to: '/dashboard' })
     }
   }
 
   return (
     <div className="w-full max-w-md p-8 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-xl">
-      <Typography variant="h2" className="mb-6 text-center">Login</Typography>
+      <H2 className="mb-6 text-center text-white">Login</H2>
       <form onSubmit={handleLogin} className="space-y-4">
         <div>
-          <Typography variant="small" className="mb-1 block">Email</Typography>
+          <Muted className="mb-1 block text-slate-200">Email</Muted>
           <Input
             type="email"
             placeholder="organizer@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
             required
           />
         </div>
         <div>
-          <Typography variant="small" className="mb-1 block">Password</Typography>
+          <Muted className="mb-1 block text-slate-200">Password</Muted>
           <Input
             type="password"
             placeholder="••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            disabled={loading}
             required
           />
         </div>
         {error && (
-          <Typography variant="small" className="text-red-500 text-center">{error}</Typography>
+          <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-center">
+            <Muted className="text-red-400">{error}</Muted>
+          </div>
         )}
         <Button type="submit" className="w-full" disabled={loading}>
           {loading ? 'Logging in...' : 'Login'}
         </Button>
       </form>
       <div className="mt-4 text-center">
-        <Typography variant="small" className="text-slate-400">
+        <Muted className="text-slate-300">
           Don't have an account?{' '}
-          <Link to="/register" className="text-indigo-400 hover:underline">
+          <Link to="/register" className="text-indigo-300 hover:underline">
             Register here
           </Link>
-        </Typography>
+        </Muted>
       </div>
     </div>
   )

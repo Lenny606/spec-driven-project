@@ -32,6 +32,7 @@ Initialize the technical foundation of the project by setting up the database la
 - [x] **Home Page Spec**: Defined the layout and logic for the unauthenticated home page.
 - [x] **Authentication Spec**: Finalized strategy using Better Auth.
 - [x] **Authentication Implementation**: Setup Better Auth, Drizzle schemas, API routes, and Auth UI.
+- [x] **Auth Flow Logic**: Implemented login/logout redirection and error handling.
 - [x] **User Dashboard Spec**: Defined the structural shell and protection for the authenticated area.
 
 ## IN PROGRESS

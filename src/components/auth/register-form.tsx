@@ -2,7 +2,7 @@ import * as React from 'react'
 import { authClient } from '../../lib/auth-client'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
-import { Typography } from '../ui/typography'
+import { H2, Muted } from '../ui/typography'
 import { useNavigate, Link } from '@tanstack/react-router'
 
 export function RegisterForm() {
@@ -25,61 +25,71 @@ export function RegisterForm() {
     })
 
     if (error) {
-      setError(error.message || 'Registration failed')
+      const message = error.code === 'USER_ALREADY_EXISTS'
+        ? 'An account with this email already exists.'
+        : error.message || 'Registration failed. Please try again.'
+      
+      setError(message)
       setLoading(false)
     } else {
-      navigate({ to: '/' })
+      // Redirect to dashboard on success
+      navigate({ to: '/dashboard' })
     }
   }
 
   return (
     <div className="w-full max-w-md p-8 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-xl">
-      <Typography variant="h2" className="mb-6 text-center">Register</Typography>
+      <H2 className="mb-6 text-center text-white">Register</H2>
       <form onSubmit={handleRegister} className="space-y-4">
         <div>
-          <Typography variant="small" className="mb-1 block">Full Name</Typography>
+          <Muted className="mb-1 block text-slate-200">Full Name</Muted>
           <Input
             type="text"
             placeholder="John Doe"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            disabled={loading}
             required
           />
         </div>
         <div>
-          <Typography variant="small" className="mb-1 block">Email</Typography>
+          <Muted className="mb-1 block text-slate-200">Email</Muted>
           <Input
             type="email"
             placeholder="organizer@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            disabled={loading}
             required
           />
         </div>
         <div>
-          <Typography variant="small" className="mb-1 block">Password</Typography>
+          <Muted className="mb-1 block text-slate-200">Password</Muted>
           <Input
             type="password"
             placeholder="••••••••"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            disabled={loading}
             required
           />
         </div>
         {error && (
-          <Typography variant="small" className="text-red-500 text-center">{error}</Typography>
+          <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-center">
+            <Muted className="text-red-400">{error}</Muted>
+          </div>
         )}
         <Button type="submit" className="w-full" disabled={loading}>
           {loading ? 'Registering...' : 'Register'}
         </Button>
       </form>
       <div className="mt-4 text-center">
-        <Typography variant="small" className="text-slate-400">
+        <Muted className="text-slate-300">
           Already have an account?{' '}
-          <Link to="/login" className="text-indigo-400 hover:underline">
+          <Link to="/login" className="text-indigo-300 hover:underline">
             Login here
           </Link>
-        </Typography>
+        </Muted>
       </div>
     </div>
   )
